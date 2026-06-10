@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Javeria Javaid — Software Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0F0F13;
+    --bg2: #17171D;
+    --bg3: #1E1E27;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #E8E8F0;
+    --muted: #8888A0;
+    --accent: #7C6FEA;
+    --accent2: #A99CF4;
+    --accent-bg: rgba(124,111,234,0.12);
+    --green: #4ADE80;
+    --green-bg: rgba(74,222,128,0.10);
+    --amber: #FBB040;
+    --amber-bg: rgba(251,176,64,0.10);
+    --blue: #60AEFF;
+    --blue-bg: rgba(96,174,255,0.10);
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,15,19,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent2);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 13px; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* LAYOUT */
+  main { max-width: 780px; margin: 0 auto; padding: 120px 2rem 80px; }
+
+  section { margin-bottom: 72px; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* HERO */
+  .hero { padding-top: 16px; }
+  .hero-name {
+    font-size: clamp(36px, 6vw, 52px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .hero-name span { color: var(--accent2); }
+  .hero-role {
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .hero-bio {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 580px;
+    margin-bottom: 28px;
+  }
+  .hero-contacts {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .contact-chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--bg3);
+    border: 0.5px solid var(--border2);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-chip:hover { border-color: var(--accent); color: var(--accent2); }
+  .contact-chip svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* SECTION TITLE */
+  .sec-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sec-title::after {
+    content: '';
+    flex: 1;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+  }
+  .skill-block {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    transition: border-color 0.2s;
+  }
+  .skill-block:hover { border-color: var(--border2); }
+  .skill-cat {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .stag {
+    font-size: 12px;
+    background: var(--bg3);
+    color: var(--text);
+    border-radius: 4px;
+    padding: 3px 8px;
+  }
+
+  /* PROJECTS */
+  .projects-list { display: flex; flex-direction: column; gap: 14px; }
+  .proj {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .proj:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .proj-top {
+    display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 12px;
+    margin-bottom: 8px;
+  }
+  .proj-name {
+    font-size: 15px; font-weight: 600;
+    color: var(--text);
+  }
+  .proj-badge {
+    font-size: 10px; font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+  .badge-fs { background: var(--blue-bg); color: var(--blue); }
+  .badge-db { background: var(--green-bg); color: var(--green); }
+  .badge-oop { background: var(--amber-bg); color: var(--amber); }
+  .proj-desc {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.65; margin-bottom: 14px;
+  }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ptag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent2);
+    background: var(--accent-bg);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+
+  /* EDUCATION */
+  .edu-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .edu-badge {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--accent-bg);
+    border: 0.5px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent2);
+  }
+  .edu-deg { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .edu-inst { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .edu-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .epill {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg3);
+    border-radius: 4px;
+    padding: 3px 9px;
+  }
+
+  /* COMPETENCIES */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 8px;
+  }
+  .comp {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 8px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .comp:hover { color: var(--text); border-color: var(--border2); }
+  .comp-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 0.5px solid var(--border);
+    font-family: var(--mono);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 520px) {
+    main { padding: 96px 1.25rem 60px; }
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">javeria.dev</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="eyebrow">Available for internships & opportunities</div>
+    <h1 class="hero-name">Javeria <span>Javaid</span></h1>
+    <p class="hero-role">Software Developer · PUCIT, Lahore</p>
+    <p class="hero-bio">
+      CS student specialising in software development with hands-on experience building full-stack applications, network tools, and database-driven systems. Proficient in C/C++, Python, and SQL — passionate about writing clean, efficient code.
+    </p>
+    <div class="hero-contacts" id="contact">
+      <a class="contact-chip" href="tel:+923184057200">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.07 2.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+        +92 318 4057200
+      </a>
+      <a class="contact-chip" href="mailto:javeriajav01@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        javeriajav01@gmail.com
+      </a>
+      <a class="contact-chip" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="contact-chip" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+      <span class="contact-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Lahore, Pakistan
+      </span>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-title">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-cat">Languages</div>
+        <div class="skill-tags">
+          <span class="stag">C</span>
+          <span class="stag">C++</span>
+          <span class="stag">Python</span>
+          <span class="stag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Web</div>
+        <div class="skill-tags">
+          <span class="stag">HTML5</span>
+          <span class="stag">CSS3</span>
+          <span class="stag">JavaScript</span>
+          <span class="stag">Flask</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Databases</div>
+        <div class="skill-tags">
+          <span class="stag">Oracle SQL</span>
+          <span class="stag">MongoDB</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Libraries</div>
+        <div class="skill-tags">
+          <span class="stag">Scapy</span>
+          <span class="stag">Pandas</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Tools</div>
+        <div class="skill-tags">
+          <span class="stag">Git</span>
+          <span class="stag">VS Code</span>
+          <span class="stag">MongoDB Compass</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Concepts</div>
+        <div class="skill-tags">
+          <span class="stag">OOP</span>
+          <span class="stag">REST APIs</span>
+          <span class="stag">Concurrency</span>
+          <span class="stag">Networking</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-title">Projects</div>
+    <div class="projects-list">
+
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-name">Network Monitoring & Analysis Platform</div>
+          <span class="proj-badge badge-fs">Full-stack</span>
+        </div>
+        <p class="proj-desc">Mini Wireshark-style tool with real-time packet capture, analysis, and an interactive web dashboard. Non-blocking capture via Python threading; packet logs persisted to CSV for cross-session analysis.</p>
+        <div class="proj-stack">
+          <span class="ptag">Python</span>
+          <span class="ptag">Scapy</span>
+          <span class="ptag">Flask</span>
+          <span class="ptag">Pandas</span>
+          <span class="ptag">REST API</span>
+          <span class="ptag">HTML/CSS/JS</span>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-name">Hotel Reservation System</div>
+          <span class="proj-badge badge-db">Database</span>
+        </div>
+        <p class="proj-desc">Relational database-backed reservation system with normalised schemas managing rooms, guests, bookings, and billing. Automated workflows via stored procedures and triggers in Oracle DB.</p>
+        <div class="proj-stack">
+          <span class="ptag">Oracle DB</span>
+          <span class="ptag">SQL</span>
+          <span class="ptag">Stored Procedures</span>
+          <span class="ptag">Triggers</span>
+          <span class="ptag">Views</span>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-name">Employee Payroll System</div>
+          <span class="proj-badge badge-db">Database</span>
+        </div>
+        <p class="proj-desc">NoSQL payroll management system handling employee records, salaries, bonuses, deductions, and payroll cycles. Flexible document schemas accommodate varying compensation structures.</p>
+        <div class="proj-stack">
+          <span class="ptag">MongoDB</span>
+          <span class="ptag">CRUD</span>
+          <span class="ptag">Aggregation Pipelines</span>
+          <span class="ptag">Indexing</span>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-name">Airport Ground Crew Scheduling Simulator</div>
+          <span class="proj-badge badge-oop">OOP / C++</span>
+        </div>
+        <p class="proj-desc">Simulation system for scheduling airport ground crew shifts using inheritance, polymorphism, and encapsulation. Modular class hierarchies enable scalable and maintainable architecture.</p>
+        <div class="proj-stack">
+          <span class="ptag">C++</span>
+          <span class="ptag">OOP</span>
+          <span class="ptag">Inheritance</span>
+          <span class="ptag">Polymorphism</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="sec-title">Education</div>
+    <div class="edu-card">
+      <div class="edu-badge">BS</div>
+      <div>
+        <div class="edu-deg">Bachelor of Science in Computer Science</div>
+        <div class="edu-inst">Punjab University College of Information Technology (PUCIT)</div>
+        <div class="edu-pills">
+          <span class="epill">Sep 2024 – Present</span>
+          <span class="epill">GPA: 3.3 / 4.0</span>
+          <span class="epill">Lahore, Pakistan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETENCIES -->
+  <section>
+    <div class="sec-title">Core competencies</div>
+    <div class="comp-grid">
+      <div class="comp"><span class="comp-dot"></span>Problem-solving</div>
+      <div class="comp"><span class="comp-dot"></span>Analytical thinking</div>
+      <div class="comp"><span class="comp-dot"></span>Attention to detail</div>
+      <div class="comp"><span class="comp-dot"></span>Self-directed learning</div>
+      <div class="comp"><span class="comp-dot"></span>Team collaboration</div>
+      <div class="comp"><span class="comp-dot"></span>Time management</div>
+      <div class="comp"><span class="comp-dot"></span>Adaptability</div>
+      <div class="comp"><span class="comp-dot"></span>Technical communication</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  built by javeria javaid · 2025
+</footer>
+
+</body>
+</html>
